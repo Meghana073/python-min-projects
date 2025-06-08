@@ -1,0 +1,26 @@
+import random
+print("Guessing Game")
+print("Enter a number between 1-50.")
+print("Let's see do u guessed the correct number or not")
+n=int(input())
+num=random.randint(0,51)
+if(n<0 and n>50):
+    print("You have choosen the number from out of range")
+    print("choose within the range")
+elif(n==num):
+    print("Congratulations! you Guessed the number")
+    print("The correct number was:",num)
+else:
+    if abs(n-num) <= 5:
+        print("Very Close!")
+    elif abs(n-num) <= 10:
+        print("Almost close!")
+    else:
+        print("Far off! keep trying.")
+
+
+
+
+
+
+
