@@ -1,0 +1,13 @@
+#odd even checker using functions
+def even_odd_checker():
+    if(n%2==0):
+        even()
+    else:
+        odd()
+def even():
+    print("Given number is even number")
+def odd():
+    print("Given number is odd number")
+
+n=int(input())
+even_odd_checker()
