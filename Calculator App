@@ -1,0 +1,34 @@
+#Calculator App using if-else
+def add(n1,n2):
+    res1=n1+n2
+    print(res1)
+def sub(n1,n2):
+    res2=n1-n2
+    print(res2)
+def mul(n1,n2):
+    res3=n1*n2
+    print(res3)
+def div(n1,n2):
+    if n2 != 0:
+        res4=n1/n2
+        print(res4)
+    else:
+        print("Cannot divide by zero!")
+
+n1=int(input("Enter First Number"))
+n2=int(input("Enter Second Number"))
+print("choose operation('add' for addition)")
+print("choose operation('sub' for subtraction)")
+print("choose operation('mul' for multiplication)")
+print("choose operation('div' for division)")
+c=str(input())
+if(c=="add"):
+    add(n1,n2)
+elif(c=="sub"):
+    sub(n1,n2)
+elif(c=="mul"):
+    mul(n1,n2)
+elif(c=="div"):
+    div(n1,n2)
+else:
+    print("oops! choose the operation from above mentioned list") 
