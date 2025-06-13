@@ -1,0 +1,162 @@
+# Student Managemnet System
+
+students = []
+def add_students():
+    while True:
+        print("Enter students details")
+        Name = input("Name")
+        Roll_no = int(input("Roll No"))
+        if Roll_no and Name in students:
+            print("This roll number already exists. Try again.")
+            continue
+        Marks = int(input("Marks"))
+
+        student = {
+            "Name": Name,
+            "Roll_No": Roll_no,
+            "Marks": Marks
+        }
+        students.append(student)
+        print("\nStudent added successfully!")
+        print("\nTo Add another student details choose option 1 ")
+        print("If u need to view students or to perform any operation choose other options")
+        print("Enter you choice(1-7)")
+        choice_selection()
+    return students
+
+def view_students():
+    if not students:
+        print("No student data available.\n")
+        return
+        
+    print("\n--- Student Details ---")
+    for s in students:
+        print(f"Name: {s['Name']}, Roll No: {s['Roll_No']}, Marks: {s['Marks']}\n")
+    print("\nIf u need to perform any operation choose other options")
+    print("Enter you choice")
+    choice_selection()
+
+def search_student():
+    if not students:
+        print("No student data available.\n")
+        return
+
+    text = input("\nEnter Student Name or Roll No to search:\n ")
+    
+    found = False
+    for s in students:
+        if s["Name"].lower() == text.lower() or str(s["Roll_No"]) == text:
+            print("\n---Student Details---")
+            print(f"student Found:\n Name: {s['Name']}, Roll No: {s['Roll_No']}, Marks: {s['Marks']}")
+            found = True
+            break
+
+    if not found:
+        print("Student not found.")
+
+    print("\nIf u need to perform any operation choose other options")
+    print("Enter you choice(1-7)")
+    choice_selection()
+       
+
+def top_scorer():
+    if not students:
+        print("No student data available.\n")
+        return
+        
+    top_scorer = students[0]
+
+    for s in students[1:]:
+        if s["Marks"] > top_scorer["Marks"]:
+            top_scorer = s
+
+    print("\n--- Top Scorer ---")
+    print(f"Name: {top_scorer['Name']}, Roll No: {top_scorer['Roll_No']}, Marks: {top_scorer['Marks']}")
+    
+    print("\nIf u need to perform any operation choose other options")
+    print("Enter you choice(1-7)")
+    choice_selection()
+
+def average_marks():
+    if not students:
+        print("No student data available.\n")
+        return
+        
+    total = 0
+    for s in students:
+        total = total + s["Marks"]
+    avg = total/len(students)
+    
+    print(f"\n Average Marks of Students: {avg:.2f}")
+    
+    print("\nIf u need to perform any operation choose other options")
+    print("Enter you choice")
+    choice_selection()
+
+def delete_student():
+    if not students:
+        print("No student data available.\n")
+        return
+        
+    st = input("\nEnter Student Name or Roll No to delete:\n ")
+    
+    found = False
+    for s in students:
+        if s["Name"].lower() == st.lower() or str(s["Roll_No"]) == st:
+            students.remove(s)
+            found = True
+            break
+    print("\n Student data deleted sucessfully")
+    print("\n---Remaining students list---")
+    for s in students:
+        print(f"Name: {s['Name']}, Roll No: {s['Roll_No']}, Marks: {s['Marks']}\n")
+    
+    if not found:
+        print("Student not found.")
+
+    print("\nIf u need to perform any operation choose other options")
+    print("Enter you choice(1-7)")
+    choice_selection()
+
+def choice_selection():
+    choice = int(input())
+    if(choice == 1):
+        add_students()
+    elif(choice == 2):
+        view_students()
+    elif(choice == 3):
+        search_student()
+    elif(choice == 4):
+        top_scorer()
+    elif(choice == 5):
+        average_marks()
+    elif(choice == 6):
+        delete_student()
+    elif(choice == 7):
+        print("Exiting program")
+        return "exit"
+    else:
+        print("Invalid Choice")
+        print("Enter the valid choice(1-7)")
+        choice = int(input())
+    return choice
+
+print("Student Management System")
+print("1.Add Student Details")
+print("2.view students list")
+print("3.Search student by Name/Roll_no")
+print("4.View Top scorer")
+print("5.view Average Marks of Students")
+print("6.To delete particular student data")
+print("7.Exit")
+result = choice_selection()
+if result == "exit":
+    break
+print("Enter your Choice(1-7)")
+choice_selection()
+add_students()
+view_students()
+search_student()
+top_scorer()
+average_marks()
+delete_student()
