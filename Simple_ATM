@@ -1,0 +1,65 @@
+balance = 0
+account_num = "1234567890"
+password = 1234  # set default password
+
+def login_in():
+    print("Welcome to Python ATM")
+    for i in range(3):
+        entered = int(input("Enter your password: "))
+        if entered == password:
+            print("Login successful!\n")
+            return True
+        else:
+            print("Incorrect password.")
+    print("Too many failed attempts. Exiting.")
+    return False
+
+def menu():
+    print("\n--- MENU ---")
+    print("1. View bank details")
+    print("2. Check balance")
+    print("3. Deposit")
+    print("4. Withdraw")
+    print("5. Exit")
+    ch = int(input("Enter your choice: "))
+    return ch
+
+def view_details():
+    print("\nAccount Number:", account_num)
+    print("Current Balance:", balance)
+
+def check_balance():
+    print(f"\nYour current balance is ₹{balance}")
+
+def deposit():
+    global balance
+    amount = int(input("\nEnter amount to deposit: "))
+    balance += amount
+    print(f"₹{amount} deposited. Updated balance: ₹{balance}")
+
+def withdraw():
+    global balance
+    amount = int(input("\nEnter amount to withdraw: "))
+    if amount > balance:
+        print("Insufficient balance!")
+    else:
+        balance -= amount
+        print(f"₹{amount} withdrawn. Updated balance: ₹{balance}")
+
+# Main program
+if login_in():
+    while True:
+        ch = menu()
+        if ch == 1:
+            view_details()
+        elif ch == 2:
+            check_balance()
+        elif ch == 3:
+            deposit()
+        elif ch == 4:
+            withdraw()
+        elif ch == 5:
+            print("Thank you for using our ATM.")
+            break
+        else:
+            print("Invalid choice. Try again.")
